@@ -3,17 +3,37 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import ActivityFeed from "./ActivityFeed";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 import "../styles/home.css";
 
 function Home() {
   const [coins, setCoins] = useState([]);
+  const [history, setHistory] = useState({});
 
   useEffect(() => {
     fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,binancecoin,litecoin,ripple&order=market_cap_desc&per_page=5&page=1&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,binancecoin,litecoin,ripple&order=market_cap_desc&per_page=5&page=1&sparkline=true"
     )
       .then((res) => res.json())
-      .then((data) => setCoins(data))
+      .then((data) => {
+        setCoins(data);
+        const formatted = {};
+        data.forEach((coin) => {
+          formatted[coin.id] = coin.sparkline_in_7d.price.map((p, i) => ({
+            time: i,
+            price: p,
+          }));
+        });
+        setHistory(formatted);
+      })
       .catch((err) => console.error("Error fetching market data:", err));
   }, []);
 
@@ -22,49 +42,65 @@ function Home() {
       {/* === NEWSFEED === */}
       <ActivityFeed />
 
-      {/* === HERO SECTION === */}
-      <section className="hero">
-        <div className="hero-overlay" />
-        <div className="hero-container">
-          {/* Text */}
-          <motion.div
-            className="hero-text"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <h1>
-              Grow Your Wealth with <span>Heritage Investment</span>
-            </h1>
-            <p>
-              Secure investments. Sustainable profits. Start building your
-              financial future today with expert-backed strategies.
-            </p>
+ {/* === HERO SECTION === */}
+<section className="hero">
+  <div className="hero-overlay" />
+  <div className="hero-container">
+    {/* Text */}
+    <motion.div
+      className="hero-text"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <h1>
+        Smart Investing with <span>Octa Investment</span>
+      </h1>
+      <p>
+        We combine data-driven strategies, risk management, and expert insights 
+        to help you grow and protect your wealth with confidence.
+      </p>
 
-            <div className="hero-buttons">
-              {/* 🔹 Plain button, no navigation */}
-              <button className="btn btn-primary">Get Started</button>
-              <a href="#trust" className="btn btn-outline">
-                Learn More
-              </a>
-            </div>
-          </motion.div>
+      {/* Key Points */}
+      <ul className="mt-5 space-y-3 text-sm text-gray-300">
+        <li className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-teal-400 rounded-full" />
+          Diversified portfolios tailored to your goals
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-teal-400 rounded-full" />
+          Institutional-grade security and transparency
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-teal-400 rounded-full" />
+          Expert support every step of the way
+        </li>
+      </ul>
 
-          {/* Illustration */}
-          <motion.div
-            className="hero-illustration"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <img src="/images/invest.jpg" alt="Investment Growth" />
-          </motion.div>
-        </div>
-      </section>
+      <div className="hero-buttons mt-6">
+        <button className="btn btn-primary">Get Started</button>
+        <a href="#trust" className="btn btn-outline">
+          Learn More
+        </a>
+      </div>
+    </motion.div>
+
+    {/* Illustration */}
+    <motion.div
+      className="hero-illustration"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <img src="/images/btc.png" alt="Professional Investment Strategy" />
+    </motion.div>
+  </div>
+</section>
+
 
       {/* === LIVE MARKET SECTION === */}
       <section className="market-prices">
-        <h2>Live Market Prices</h2>
+        <h2>📈 Live Market Prices</h2>
         <div className="market-grid">
           {coins.length > 0 ? (
             coins.map((coin) => (
@@ -77,6 +113,7 @@ function Home() {
                   <img src={coin.image} alt={coin.name} />
                   <h3>{coin.name}</h3>
                 </div>
+
                 <div className="price">
                   <p>${coin.current_price.toLocaleString()}</p>
                   <span
@@ -87,6 +124,58 @@ function Home() {
                     {coin.price_change_percentage_24h.toFixed(2)}%
                   </span>
                 </div>
+
+                {/* Mini Chart */}
+                {history[coin.id] && (
+                  <div className="chart-container">
+                    <ResponsiveContainer width="100%" height={100}>
+                      <AreaChart data={history[coin.id]}>
+                        <defs>
+                          <linearGradient
+                            id={`color-${coin.id}`}
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor={
+                                coin.price_change_percentage_24h > 0
+                                  ? "#4ade80"
+                                  : "#f87171"
+                              }
+                              stopOpacity={0.8}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor={
+                                coin.price_change_percentage_24h > 0
+                                  ? "#4ade80"
+                                  : "#f87171"
+                              }
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                        </defs>
+                        <XAxis dataKey="time" hide />
+                        <YAxis domain={["auto", "auto"]} hide />
+                        <Tooltip />
+                        <Area
+                          type="monotone"
+                          dataKey="price"
+                          stroke={
+                            coin.price_change_percentage_24h > 0
+                              ? "#4ade80"
+                              : "#f87171"
+                          }
+                          fillOpacity={1}
+                          fill={`url(#color-${coin.id})`}
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                )}
               </motion.div>
             ))
           ) : (
@@ -95,12 +184,45 @@ function Home() {
         </div>
       </section>
 
+      {/* === MARKET OVERVIEW SECTION === */}
+      <section className="market-overview">
+        <h2>🌍 Market Overview</h2>
+        <div className="overview-grid">
+          {coins.slice(0, 3).map((coin) => (
+            <motion.div
+              key={coin.id}
+              className="overview-card"
+              whileHover={{ scale: 1.03 }}
+            >
+              <h3>{coin.name} - Last 7 Days</h3>
+              {history[coin.id] && (
+                <ResponsiveContainer width="100%" height={200}>
+                  <AreaChart data={history[coin.id]}>
+                    <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+                    <XAxis dataKey="time" hide />
+                    <YAxis domain={["auto", "auto"]} />
+                    <Tooltip />
+                    <Area
+                      type="monotone"
+                      dataKey="price"
+                      stroke="#00ffc6"
+                      fillOpacity={0.4}
+                      fill="url(#colorOverview)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* === TRUST SECTION === */}
       <section id="trust" className="trust-section">
         <div className="trust-header">
           <h2>Trusted by Investors Worldwide</h2>
           <p>
-            Heritage Investment empowers <strong>5,000+</strong> investors in{" "}
+            Octa Investment empowers <strong>5,000+</strong> investors in{" "}
             <strong>120+ countries</strong> with security, transparency, and
             consistent growth.
           </p>
@@ -178,10 +300,9 @@ function Home() {
         >
           <h2>Start Growing Your Wealth Today</h2>
           <p>
-            Join thousands of investors who trust Heritage Investment for their
+            Join thousands of investors who trust Octa Investment for their
             financial success.
           </p>
-          {/* Keep this one as a link to signup */}
           <a href="/signup" className="btn btn-primary">
             Create Your Account
           </a>
@@ -213,7 +334,7 @@ function Home() {
 
       {/* === FOOTER === */}
       <footer className="footer">
-        <p>© 2020 Heritage Investment Group. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Octa Investment Group. All rights reserved.</p>
       </footer>
     </>
   );

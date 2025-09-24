@@ -29,7 +29,7 @@
 }
 
 .primary-btn {
-  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  background: linear-gradient(90deg, #2ba0ff, #41c9ff);
   color: white;
   padding: 12px;
   border: none;
@@ -41,7 +41,7 @@
 }
 
 .primary-btn:hover {
-  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  background: linear-gradient(90deg, #419aff, #2ba0ff);
 }
 
 .review-box {

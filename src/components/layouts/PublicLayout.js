@@ -16,8 +16,13 @@ function PublicLayout() {
           >
             ☰
           </button>
-          <Link to="/" className="logo">Heritage Investment</Link>
+          <Link to="/" className="logo">Octa <span className="highlight">Investment</span></Link>
         </div>
+
+        {/* <a href="/" className="logo">
+  Octa<span className="highlight">Invest</span>
+</a> */}
+
 
         <div className="navbar-right">
           <Link to="/register" className="register-btn">Register</Link>

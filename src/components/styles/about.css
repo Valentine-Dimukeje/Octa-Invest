@@ -10,6 +10,7 @@
   background-position: center;
   color: #fff;
   overflow: hidden;
+  background: #0a0f1c;
 }
 
 /* ====== BACKGROUND ELEMENTS ====== */
@@ -17,13 +18,13 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .blob1 {
   width: 350px;
   height: 350px;
-  background: #0ff;
+  background: rgba(0, 114, 255, 0.4); /* deep blue glow */
   top: 15%;
   left: 10%;
 }
@@ -31,7 +32,7 @@
 .blob2 {
   width: 300px;
   height: 300px;
-  background: #ff00f7;
+  background: rgba(0, 50, 120, 0.35); /* darker navy glow */
   bottom: 15%;
   right: 10%;
 }
@@ -40,7 +41,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
 }
 
@@ -64,19 +65,19 @@
 .about-hero-content h1 {
   font-size: 3rem;
   line-height: 1.2;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
 }
 
 .about-hero-content h1 span {
-  color: #00e6ff;
-  font-family: 'Courier New', Courier, monospace;
+  color: #0072ff; /* professional blue */
 }
 
 .about-hero-content p {
   font-size: 1.2rem;
   margin-top: 10px;
-  color: #dcdcdc;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #cbd5e1;
+  font-weight: 300;
 }
 
 /* ====== MISSION SECTION ====== */
@@ -99,14 +100,14 @@
 .mission-content h2 {
   font-size: 2rem;
   margin-bottom: 15px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  color: #0072ff;
 }
 
 .mission-content p {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #d1d1d1;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .mission-img {
@@ -114,80 +115,95 @@
   min-width: 280px;
   max-width: 450px;
   border-radius: 15px;
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* ====== TEAM SECTION ====== */
-.about-team {
+/* ====== VALUES SECTION ====== */
+.about-values {
   padding: 80px 10%;
-  background: linear-gradient(180deg, #0c1322, #151f33);
-  text-align: center;
+  background: #111b2e;
   color: #fff;
-}
-
-.about-team h2 {
-  font-size: 2.2rem;
-  margin-bottom: 40px;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-}
-
-.team-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  padding: 20px;
   text-align: center;
-  transition: transform 0.3s;
 }
 
-.team-card:hover {
-  transform: translateY(-5px);
+.values-header {
+  max-width: 700px;
+  margin: 0 auto 50px auto;
 }
 
-.team-card img {
-  width: 100%;
-  border-radius: 50%;
+.values-header h2 {
+  font-size: 2.2rem;
   margin-bottom: 15px;
-  border: 3px solid #00e6ff;
+  font-weight: 700;
+  color: #0072ff;
 }
 
-.team-card h4 {
-  margin: 5px 0;
-  font-size: 1.2rem;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.team-card p {
-  font-size: 0.9rem;
+.values-header p {
   color: #bbb;
-  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.value-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.value-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #0072ff; /* blue icons */
+}
+
+.value-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
 }
 
 /* ====== CTA SECTION ====== */
 .about-cta {
-  background: #00e6ff;
-  color: #0c1322;
+  background: linear-gradient(135deg, #001f3f, #0072ff);
+  color: #fff;
   text-align: center;
-  padding: 60px 20px;
+  padding: 70px 20px;
 }
 
 .about-cta h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
 }
 
 .primary-btn {
   background: #0c1322;
   color: #fff;
-  padding: 12px 25px;
+  padding: 14px 30px;
   border: none;
   border-radius: 30px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -198,9 +214,9 @@
 
 /* ====== FOOTER ====== */
 .footer {
-  background: #0c1322;
+  background: #050a13;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   color: #aaa;
   font-size: 0.9rem;
 }
@@ -208,7 +224,7 @@
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .about-hero-content h1 {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
 
   .about-mission {

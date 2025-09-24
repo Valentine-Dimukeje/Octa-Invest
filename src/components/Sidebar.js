@@ -35,7 +35,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* Header */}
         <div className="sidebar-header">
           <Link to="/" className="logo">
-            Heritage Investment
+            Octa Investment
           </Link>
           <button className="close-btn" onClick={toggleSidebar}>
             ✖

@@ -2,38 +2,21 @@ import React from "react";
 import "../styles/activityFeed.css";
 
 const feedData = [
-  "Walter invested $2,500",
-  "Rom invested $1,000",
-  "Keane cashed out $5,000",
-  "Rice cashed out $2,900",
-  "George withdrew $5,000",
-  "Amily invested $700",
-  "Olivia earned $11,200",
-  "Vic withdrew $6,400",
-  "Jammy invested $2,700",
-  "Joe invested $1,000",
-  "Calvin cashed out $5,900",
-  "Ken cashed out $7,500",
-  "Sara withdrew $5,300",
-  "Alice invested $5,500",
-  "Olix earned $10,500",
-  "Vin withdrew $3,000",
-  "Biden invested $4,000",
-  "Kuca invested $10,000",
-  "Scout cashed out $1,500,000",
-  "Max cashed out $10,000",
-  "Gina withdrew $5,000",
-  "Afred invested $1,000",
-  "Redmond earned $11,200",
-  "Cole withdrew $5,700",
-  "Joao invested $2,000",
-  "Emily invested $1,500",
-  "Luren cashed out $5,000",
-  "Oshola cashed out $20,000",
-  "Mattie withdrew $5,000",
-  "Lisa invested $5,000",
-  "Lara earned $10,500",
-  "Alexia withdrew $13,000",
+  "💡 Did you know? Diversified portfolios reduce risk and boost returns.",
+  "📊 Top investors grow wealth steadily, not overnight.",
+  "🚀 Join Octa Investment and be part of a fast-growing community.",
+  "🔒 Your funds are protected with institutional-grade security.",
+  "🌍 Thousands of investors are building financial freedom with us.",
+  "📈 Consistency beats timing — start investing today.",
+  "🤝 Partner with experts who understand the markets.",
+  "💰 Small investments today can compound into big results tomorrow.",
+  "📣 Registration is open — secure your spot now.",
+  "🏆 Octa Investment: Trusted strategies, proven results.",
+  "🧠 Smart investors don’t wait — they start early.",
+  "📢 Build wealth with expert-backed strategies.",
+  "💡 Did you know? The earlier you invest, the higher your long-term growth.",
+  "🚀 Join other investors earning steady passive income.",
+  "📊 Stay ahead of the market with data-driven insights.",
 ];
 
 function ActivityFeed() {
@@ -43,7 +26,7 @@ function ActivityFeed() {
         <div className="ticker">
           {feedData.map((item, index) => (
             <span className="ticker-item" key={index}>
-              📢 {item}
+              {item}
             </span>
           ))}
         </div>

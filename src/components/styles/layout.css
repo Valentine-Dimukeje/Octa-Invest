@@ -13,12 +13,21 @@
 }
 
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #fff;
   text-decoration: none;
   margin-left: 1rem;
+  font-family: "Poppins", sans-serif;
 }
+
+.logo {
+  color: #fff; /* default color */
+}
+
+.logo .highlight {
+  color: #00aeff; /* different color (blue accent) */
+}
+
 
 .menu-btn {
   background: none;
@@ -52,7 +61,7 @@
   left: -100%;
   width: 250px;
   height: 100%;
-  background: #0c1322;
+  background: #eceef3;
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
@@ -62,13 +71,14 @@
 }
 
 .sidebar-menu a {
-  color: white;
+  color: rgb(12, 4, 4);
   text-decoration: none;
   font-size: 1.2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .sidebar-menu a:hover {
-  color: #f1c40f;
+  color: #0f9ef1;
 }
 
 .sidebar-menu.open {

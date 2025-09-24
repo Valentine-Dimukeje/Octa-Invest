@@ -7,7 +7,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: #0c1322;
+  background: #0a0f1c; /* blackish navy */
   color: #fff;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .contact-animated-bg .blob1 {
-  background: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 114, 255, 0.3); /* deep blue glow */
   width: 300px;
   height: 300px;
   top: 10%;
@@ -40,7 +40,7 @@ body {
 }
 
 .contact-animated-bg .blob2 {
-  background: rgba(255, 0, 150, 0.3);
+  background: rgba(0, 50, 120, 0.3); /* darker blue glow */
   width: 350px;
   height: 350px;
   bottom: 10%;
@@ -49,7 +49,7 @@ body {
 
 .contact-animated-bg .circle1,
 .contact-animated-bg .circle2 {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   width: 80px;
   height: 80px;
 }
@@ -71,14 +71,14 @@ body {
 }
 
 .contact-hero-content h1 span {
-  color: #00d4ff;
+  color: #0072ff; /* professional blue */
   font-family: 'Courier New', Courier, monospace;
 }
 
 .contact-hero-content p {
   font-size: 1.2rem;
   margin-top: 10px;
-  color: #ccc;
+  color: #cbd5e1;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -97,18 +97,18 @@ body {
 }
 
 .info-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   padding: 1.5rem;
   border-radius: 15px;
   text-align: center;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .info-card i {
   font-size: 2rem;
-  color: #00d4ff;
+  color: #0072ff; /* blue icons */
   margin-bottom: 10px;
 }
 
@@ -126,7 +126,7 @@ body {
 
 /* FORM */
 .contact-form {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(15px);
   padding: 2rem;
   border-radius: 15px;
@@ -138,13 +138,13 @@ body {
 .contact-form h2 {
   margin-bottom: 10px;
   font-size: 1.5rem;
-  color: #00d4ff;
+  color: #0072ff;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .contact-form input,
 .contact-form textarea {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border: none;
   outline: none;
   padding: 12px;
@@ -158,7 +158,7 @@ body {
 }
 
 .contact-form button {
-  background: linear-gradient(135deg, #00d4ff, #0072ff);
+  background: linear-gradient(135deg, #001f3f, #0072ff); /* dark blue to bright blue */
   color: #fff;
   padding: 12px;
   font-size: 1rem;
@@ -169,7 +169,7 @@ body {
 }
 
 .contact-form button:hover {
-  background: linear-gradient(135deg, #0072ff, #00d4ff);
+  background: linear-gradient(135deg, #0072ff, #001f3f);
 }
 
 /* MAP SECTION */
@@ -192,7 +192,7 @@ body {
   padding: 1.5rem;
   font-size: 0.9rem;
   color: #aaa;
-  background: #0a0f1c;
+  background: #050a13; /* very dark navy */
 }
 
 /* RESPONSIVE DESIGN */
