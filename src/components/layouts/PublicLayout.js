@@ -28,15 +28,25 @@ function PublicLayout() {
           <Link to="/register" className="register-btn">Register</Link>
         </div>
       </header>
+{/* Sidebar Menu */}
+<nav className={`sidebar-menu ${menuOpen ? "open" : ""}`}>
+  
+  {/* Cancel / Close Button */}
+ <button 
+  className="close-sidebar-btn"
+  onClick={() => setMenuOpen(false)}
+>
+  ✖
+</button>
 
-      {/* Sidebar Menu */}
-      <nav className={`sidebar-menu ${menuOpen ? "open" : ""}`}>
-        <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-        <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-        <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-        <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-        <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
-      </nav>
+
+  <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+  <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+  <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+  <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+  <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+</nav>
+
 
       {/* Page Content */}
       <main className="public-main">

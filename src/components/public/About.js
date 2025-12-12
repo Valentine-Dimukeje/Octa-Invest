@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "../styles/about.css";
 
 function About() {
+ const navigate = useNavigate();
+
   return (
     <>
       {/* HERO SECTION */}
@@ -139,7 +142,13 @@ function About() {
           viewport={{ once: true }}
         >
           <h2>Take the Next Step in Your Investment Journey</h2>
-          <button className="primary-btn">Register Today</button>
+          <button
+  className="btn btn-primary"
+  onClick={() => navigate("/register")}
+>
+  Register Today
+</button>
+
         </motion.div>
       </section>
 

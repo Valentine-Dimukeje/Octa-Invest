@@ -16,8 +16,8 @@ const Plans = () => {
   const plans = [
     {
       name: "Amateur Plan",
-      price: "$200 - $500",
-      min: 200,
+      price: "$100 - $500",
+      min: 100,
       max: 500,
       returns: "5% Weekly",
       color: "#2F80ED",
@@ -26,9 +26,9 @@ const Plans = () => {
     },
     {
       name: "Exclusive Plan",
-      price: "$500 - $1,000",
-      min: 500,
-      max: 1000,
+      price: "$1,000 - $5,000",
+      min: 1000,
+      max: 5000,
       returns: "8% Weekly",
       color: "#9B51E0",
       desc: "For serious investors looking for stable growth.",
@@ -36,14 +36,24 @@ const Plans = () => {
     },
     {
       name: "Diamond Plan",
-      price: "$1,000 - $1,000,000",
-      min: 1000,
+      price: "$5,000 - $10,000",
+      min: 5000,
       max: 1000000,
       returns: "12% Weekly",
       color: "#F2994A",
       desc: "Maximize returns with the highest tier.",
       icon: <FaGem size={28} color="#00E4FF" />,
     },
+     {
+    name: "Star Plan",
+    price: "$20,000 (Fixed)",
+    min: 20000,
+    max: 20000,
+    returns: "15% Weekly",
+    color: "#FFD700",
+    desc: "Elite fixed investment option for top-tier investors.",
+    icon: <FaStar size={28} color="#000" />,
+  },
   ];
 
  const handleInvestment = async () => {

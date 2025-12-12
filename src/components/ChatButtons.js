@@ -6,7 +6,7 @@ function ChatButtons() {
     <div className="chat-buttons">
       {/* WhatsApp */}
        <a
-          href="https://wa.me/12105171278"
+          href="https://wa.me/7069129702"
           target="_blank"
           rel="noopener noreferrer"
           className="chat-btn whatsapp"
@@ -18,7 +18,7 @@ function ChatButtons() {
 
       {/* Telegram */}
       <a
-          href="https://t.me/Markchen23"
+          href="https://t.me/Evanroni"
           target="_blank"
           rel="noopener noreferrer"
           className="chat-btn telegram"

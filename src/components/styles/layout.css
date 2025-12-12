@@ -70,6 +70,40 @@
   z-index: 1000;
 }
 
+.close-sidebar-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: none;
+  border: none;
+  color: black; /* button color */
+  font-size: 26px;
+  font-weight: bold;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: azure;
+  padding: 20px;
+  padding-top: 50px; /* push links down so they don’t hide under the close button */
+  transition: 0.3s ease-in-out;
+
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar-menu.open {
+  left: 0;
+}
+
+
 .sidebar-menu a {
   color: rgb(12, 4, 4);
   text-decoration: none;

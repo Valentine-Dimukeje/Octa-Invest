@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { useNavigate } from "react-router-dom";
 import ActivityFeed from "./ActivityFeed";
 import {
   AreaChart,
@@ -17,6 +18,8 @@ import "../styles/home.css";
 function Home() {
   const [coins, setCoins] = useState([]);
   const [history, setHistory] = useState({});
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetch(
@@ -78,7 +81,13 @@ function Home() {
       </ul>
 
       <div className="hero-buttons mt-6">
-        <button className="btn btn-primary">Get Started</button>
+        <button
+  className="btn btn-primary"
+  onClick={() => navigate("/register")}
+>
+  Get Started
+</button>
+
         <a href="#trust" className="btn btn-outline">
           Learn More
         </a>
@@ -92,7 +101,7 @@ function Home() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
     >
-      <img src="/images/btc.png" alt="Professional Investment Strategy" />
+      <img src="/images/stock.webp" alt="Professional Investment Strategy" />
     </motion.div>
   </div>
 </section>
@@ -303,16 +312,20 @@ function Home() {
             Join thousands of investors who trust Octa Investment for their
             financial success.
           </p>
-          <a href="/signup" className="btn btn-primary">
-            Create Your Account
-          </a>
+          <button
+  className="btn btn-primary"
+  onClick={() => navigate("/register")}
+>
+  Create Your Account
+</button>
+
         </motion.div>
       </section>
 
       {/* === FLOATING CHAT BUTTONS === */}
       <div className="chat-buttons">
         <a
-          href="https://wa.me/12105171278"
+          href="https://wa.me/7069129702"
           target="_blank"
           rel="noopener noreferrer"
           className="chat-btn whatsapp"
@@ -322,7 +335,7 @@ function Home() {
         </a>
 
         <a
-          href="https://t.me/Markchen23"
+          href="https://t.me/Evanroni"
           target="_blank"
           rel="noopener noreferrer"
           className="chat-btn telegram"

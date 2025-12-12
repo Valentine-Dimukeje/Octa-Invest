@@ -37,7 +37,7 @@ function Contact() {
           <motion.div className="info-card" whileHover={{ scale: 1.05 }}>
             <i className="fas fa-phone-alt"></i>
             <h4>Call Us</h4>
-            <p>+1 210 517 1278</p>
+            <p>+(706) 912-9702</p>
           </motion.div>
           <motion.div className="info-card" whileHover={{ scale: 1.05 }}>
             <i className="fas fa-envelope"></i>

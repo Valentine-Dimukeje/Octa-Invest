@@ -20,9 +20,9 @@ function Deposit() {
   const { showNotification } = useNotification();
 
   const getWalletAddress = () => {
-    if (method === "USDT_TRX") return "TBBWQzu3ZqYfU4bvXa8pXmUr7tQ7PftCpq";
-    if (method === "BTC") return "12JZLuqCy5q4o43y5iRF588q2EEq2EPWgA";
-    if (method === "ETH") return "0x2258f21F0afe88880bcdb99FFc22bB04fF83d1bf";
+    if (method === "USDT_TRX") return "TAH15isahGDkx6VppTwqa2GNsM6ykrWwta";
+    if (method === "BTC") return "bc1qzws5nsjcumyhtsg4vvgk3zhme8xgfk9uhq056f";
+    if (method === "ETH") return "0xB6cd7F33A459670d00d40B9EEf0A722393427dFc";
     return "";
   };
 

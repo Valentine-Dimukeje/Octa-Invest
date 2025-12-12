@@ -49,6 +49,8 @@ function Register() {
       default: return "";
     }
   };
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // 🚀 Submit register form
   const handleRegister = async (e) => {
@@ -207,27 +209,49 @@ function Register() {
           onChange={handleChange}
           required
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        {form.password && (
-          <div className={`strength strength-${strength}`}>
-            Password strength: {getStrengthLabel()}
-          </div>
-        )}
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          required
-        />
+
+        <div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Password"
+    value={form.password}
+    onChange={handleChange}
+    required
+  />
+
+  <span
+    className="toggle-password"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? "🙈" : "👁"}
+  </span>
+</div>
+
+{form.password && (
+  <div className={`strength strength-${strength}`}>
+    Password strength: {getStrengthLabel()}
+  </div>
+)}
+
+<div className="password-wrapper">
+  <input
+    type={showConfirmPassword ? "text" : "password"}
+    name="confirmPassword"
+    placeholder="Confirm Password"
+    value={form.confirmPassword}
+    onChange={handleChange}
+    required
+  />
+
+  <span
+    className="toggle-password"
+    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+  >
+    {showConfirmPassword ? "🙈" : "👁"}
+  </span>
+</div>
+
 
         <button type="submit" className="auth-btn">Register</button>
       </form>
