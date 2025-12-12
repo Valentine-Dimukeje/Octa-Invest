@@ -252,7 +252,7 @@ function Home() {
             <h3>Consistent Growth</h3>
             <p>
               Proven investment strategies designed for steady long-term
-              profitability.
+              profitability
             </p>
           </motion.div>
 
