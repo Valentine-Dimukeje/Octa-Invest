@@ -133,6 +133,42 @@ function About() {
         </div>
       </section>
 
+{/* CERTIFICATE SECTION */}
+<section className="about-certificate">
+  <motion.div
+    className="certificate-wrapper"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+  >
+    <div className="certificate-image-container">
+      <img
+        src="/images/cert.png"
+        alt="Octa Investment Certificate"
+        className="certificate-image"
+      />
+    </div>
+
+    <div className="certificate-text">
+      <h2>Certified & Trusted Investment Platform</h2>
+      <p>
+        Octa Investment proudly holds an official certification as a recognized
+        and accredited investment company. Our gold-standard certificate
+        represents our commitment to transparency, regulatory compliance,
+        investor protection, and world-class service.
+      </p>
+
+      <p>
+        Partnering with us means you are trusting a globally recognized,
+        professionally accredited investment institution dedicated to integrity
+        and excellence.
+      </p>
+    </div>
+  </motion.div>
+</section>
+
+
       {/* CTA SECTION */}
       <section className="about-cta">
         <motion.div
