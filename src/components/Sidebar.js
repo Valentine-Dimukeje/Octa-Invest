@@ -96,9 +96,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLink to="/dashboard/profile" className="sidebar-link" onClick={toggleSidebar}>
               👤 Profile
             </NavLink>
-            <NavLink to="/dashboard/referral" className="sidebar-link" onClick={toggleSidebar}>
+            {/* <NavLink to="/dashboard/referral" className="sidebar-link" onClick={toggleSidebar}>
               🤝 Referral
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/dashboard/settings" className="sidebar-link" onClick={toggleSidebar}>
               ⚙️ Settings
             </NavLink>

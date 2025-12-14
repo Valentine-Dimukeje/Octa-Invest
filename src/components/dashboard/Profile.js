@@ -1,89 +1,91 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { authFetch } from "../utils/authFetch";
+import { WalletContext } from "../dashboard/walletContext";
 import "../styles/profile.css";
 
 function Profile() {
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const {
+    walletBalance,
+    profitBalance,
+    totalBalance,
+    refreshWallet,
+    walletLoading,
+  } = useContext(WalletContext);
 
   useEffect(() => {
-    async function fetchProfile() {
-      try {
-        const res = await authFetch("http://127.0.0.1:8000/api/auth/me/");
-        if (res.ok) {
-          const data = await res.json();
-          setProfile(data);
-        } else {
-          alert("Failed to load profile");
-        }
-      } catch (err) {
-        console.error("Error fetching profile:", err);
-      }
-    }
-    fetchProfile();
-  }, []);
+    // Refresh wallet when profile page opens
+    refreshWallet();
 
-  if (!profile) return <p className="loading-text">Loading profile...</p>;
+    const fetchProfile = async () => {
+      try {
+        const res = await authFetch("/api/profile/");
+        if (!res.ok) throw new Error("Profile fetch failed");
+
+        const data = await res.json();
+        setProfile(data);
+      } catch (err) {
+        console.error("Profile error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [refreshWallet]);
+
+  if (loading || walletLoading) {
+    return <p className="loading-text">Loading profile...</p>;
+  }
+
+  if (!profile) {
+    return <p className="error-text">Failed to load profile.</p>;
+  }
 
   return (
     <div className="profile-page">
       <div className="profile-card">
-        <h2 className="profile-heading">Account Profile</h2>
+        <h2>Account Profile</h2>
 
-        {/* Basic Info */}
-        <div className="profile-info">
-          <strong>Username:</strong> <span>{profile.username}</span>
-        </div>
-        <div className="profile-info">
-          <strong>Email:</strong> <span>{profile.email}</span>
-        </div>
-        <div className="profile-info">
-          <strong>Name:</strong>{" "}
-          <span>
-            {profile.first_name} {profile.last_name}
-          </span>
-        </div>
-        <div className="profile-info">
-          <strong>Phone:</strong> <span>{profile.phone || "N/A"}</span>
-        </div>
-        <div className="profile-info">
-          <strong>Country:</strong>{" "}
-          <span>
-            {profile.country || "N/A"} {profile.flag || ""}
-          </span>
-        </div>
+        {/* PERSONAL INFO */}
+        <section>
+          <h3>Personal Information</h3>
+          <p><strong>Username:</strong> {profile.username}</p>
+          <p><strong>Email:</strong> {profile.email}</p>
+          <p><strong>Name:</strong> {profile.first_name} {profile.last_name}</p>
+          <p><strong>Phone:</strong> {profile.phone || "N/A"}</p>
+          <p><strong>Country:</strong> {profile.country || "N/A"} {profile.flag}</p>
+        </section>
 
-        {/* Wallets */}
-        <div className="wallet-section">
-          <h3>Wallets</h3>
-          <p>
-            <strong>Main Wallet:</strong> ${profile.main_wallet ?? "0.00"}
-          </p>
-          <p>
-            <strong>Profit Wallet:</strong> ${profile.profit_wallet ?? "0.00"}
-          </p>
-          <p>
-            <strong>Total Balance:</strong> ${profile.wallet_balance ?? "0.00"}
-          </p>
-        </div>
+        {/* WALLET */}
+        <section>
+          <h3>Wallet Balances</h3>
+          <p><strong>Main Wallet:</strong> ${walletBalance.toFixed(2)}</p>
+          <p><strong>Profit Wallet:</strong> ${profitBalance.toFixed(2)}</p>
+          <p><strong>Total Balance:</strong> ${totalBalance.toFixed(2)}</p>
+        </section>
 
-        {/* Notifications */}
-        <div className="notifications-section">
+        {/* NOTIFICATIONS */}
+        <section>
           <h3>Notifications</h3>
-          <p>Email: {profile.notifications?.email ? "✅ On" : "❌ Off"}</p>
-          <p>SMS: {profile.notifications?.sms ? "✅ On" : "❌ Off"}</p>
-          <p>System: {profile.notifications?.system ? "✅ On" : "❌ Off"}</p>
-        </div>
+          <p>Email: {profile.notifications.email ? "✅ On" : "❌ Off"}</p>
+          <p>SMS: {profile.notifications.sms ? "✅ On" : "❌ Off"}</p>
+          <p>System: {profile.notifications.system ? "✅ On" : "❌ Off"}</p>
+        </section>
 
-        {/* Devices */}
-        <div className="devices-section">
+        {/* DEVICES */}
+        <section>
           <h3>Connected Devices</h3>
-          {!profile.devices || profile.devices.length === 0 ? (
-            <p>No devices connected.</p>
+          {profile.devices.length === 0 ? (
+            <p>No active devices.</p>
           ) : (
             <ul>
-              {profile.devices.map((d, index) => (
-                <li key={index}>
-                  {d.device_name} - {d.ip_address} <br />
+              {profile.devices.map((d, i) => (
+                <li key={i}>
+                  {d.device_name} — {d.ip_address}
+                  <br />
                   <small>
                     Last active: {new Date(d.last_active).toLocaleString()}
                   </small>
@@ -91,7 +93,7 @@ function Profile() {
               ))}
             </ul>
           )}
-        </div>
+        </section>
       </div>
     </div>
   );

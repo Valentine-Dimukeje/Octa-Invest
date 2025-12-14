@@ -27,7 +27,7 @@ import Investments from "./components/dashboard/Investments";
 import Deposit from "./components/dashboard/Deposit";
 import Withdraw from "./components/dashboard/Withdraw";
 import Profile from "./components/dashboard/Profile";
-import Referral from "./components/dashboard/Referral";
+// import Referral from "./components/dashboard/Referral";
 import Settings from "./components/dashboard/Settings";
 
 
@@ -65,7 +65,7 @@ function AppContent() {
             <Route path="/dashboard/deposit" element={<Deposit />} />
             <Route path="/dashboard/withdraw" element={<Withdraw />} />
             <Route path="/dashboard/profile" element={<Profile />} />
-            <Route path="/dashboard/referral" element={<Referral />} />
+            {/* <Route path="/dashboard/referral" element={<Referral />} /> */}
             <Route path="/dashboard/settings" element={<Settings />} />
           </Route>
         </Routes>

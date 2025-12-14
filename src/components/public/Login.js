@@ -5,6 +5,8 @@ import { authFetch } from "../utils/authFetch";
 import { API_BASE } from "../utils/config";
 import { useLoader } from "../dashboard/LoaderContext";
 import { useNavigate } from "react-router-dom";
+import { WalletContext } from "../dashboard/walletContext";
+import { useContext } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +15,8 @@ function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
+  const { onAuthSuccess } = useContext(WalletContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -43,6 +47,9 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("access", data.access);
       localStorage.setItem("refresh", data.refresh);
+      
+      
+      onAuthSuccess();
 
       // 🔎 Step 2 — Fetch profile using authFetch
       const meRes = await authFetch(`/api/auth/me/`);
