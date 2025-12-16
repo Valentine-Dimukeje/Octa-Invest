@@ -1,3 +1,4 @@
+// dashboard/walletContext.js
 import React, {
   createContext,
   useCallback,
@@ -6,71 +7,54 @@ import React, {
 } from "react";
 import { authFetch } from "../utils/authFetch";
 
-export const WalletContext = createContext({
-  walletBalance: 0,
-  profitBalance: 0,
-  totalBalance: 0,
-  refreshWallet: () => {},
-  resetWallet: () => {},
-  onAuthSuccess: () => {},
-  walletLoading: false,
-});
+export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
   const [walletBalance, setWalletBalance] = useState(0);
   const [profitBalance, setProfitBalance] = useState(0);
-  const [walletLoading, setWalletLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const resetWallet = useCallback(() => {
+  const resetWallet = () => {
     setWalletBalance(0);
     setProfitBalance(0);
-  }, []);
+  };
 
   const refreshWallet = useCallback(async () => {
-    const access = localStorage.getItem("access");
-
-    if (!access) {
-      resetWallet();
-      return;
-    }
-
-    setWalletLoading(true);
-
     try {
+      setLoading(true);
+
       const res = await authFetch("/api/dashboard-summary/");
-      if (!res.ok) throw new Error("Wallet fetch failed");
+      if (!res.ok) {
+        resetWallet();
+        return;
+      }
 
       const data = await res.json();
+
       setWalletBalance(Number(data.wallet) || 0);
       setProfitBalance(Number(data.profit_wallet) || 0);
     } catch (err) {
-      console.error("Wallet refresh error:", err);
+      console.error("Wallet refresh failed", err);
+      resetWallet();
     } finally {
-      setWalletLoading(false);
+      setLoading(false);
     }
-  }, [resetWallet]);
+  }, []);
 
-  const onAuthSuccess = useCallback(() => {
-    refreshWallet();
-  }, [refreshWallet]);
-
-  // 🔑 Fetch wallet ONLY when provider mounts
+  // 🔑 Runs on first load AND after login
   useEffect(() => {
     refreshWallet();
   }, [refreshWallet]);
-
-  const totalBalance = walletBalance + profitBalance;
 
   return (
     <WalletContext.Provider
       value={{
         walletBalance,
         profitBalance,
-        totalBalance,
-        walletLoading,
+        totalBalance: walletBalance + profitBalance,
+        loading,
         refreshWallet,
         resetWallet,
-        onAuthSuccess,
       }}
     >
       {children}
