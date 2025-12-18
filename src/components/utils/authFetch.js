@@ -1,3 +1,6 @@
+import { API_BASE } from "./config";
+
+
 export async function authFetch(path, options = {}) {
   const url = path.startsWith("http") ? path : `${API_BASE}${path}`;
   let access = localStorage.getItem("access");
