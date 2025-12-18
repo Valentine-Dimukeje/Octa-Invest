@@ -5,8 +5,8 @@ import { authFetch } from "../utils/authFetch";
 import { API_BASE } from "../utils/config";
 import { useLoader } from "../dashboard/LoaderContext";
 import { useNavigate } from "react-router-dom";
-import { WalletContext } from "../dashboard/walletContext";
-import { useContext } from "react";
+// import { WalletContext } from "../dashboard/walletContext";
+// import { useContext } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { onAuthSuccess } = useContext(WalletContext);
+  // const { onAuthSuccess } = useContext(WalletContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,31 +25,31 @@ function Login() {
 
     try {
       // 🔑 Step 1 — Login request
-      const res = await fetch(`${API_BASE}/api/auth/login/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      
-        body: JSON.stringify({
-          email,        // backend supports email or username
-          password,
-        }),
-      });
+    // const API_BASE = "http://127.0.0.1:8000";
+const res = await fetch(`${API_BASE}/api/auth/login/`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email,
+    password,
+  }),
+});
 
-      // ❌ Login failed
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        setErrorMsg(err.detail || "Invalid email or password.");
-        setLoading(false);
-        return;
-      }
 
-      // ✅ Successful login
-      const data = await res.json();
-      localStorage.setItem("access", data.access);
-      localStorage.setItem("refresh", data.refresh);
+const data = await res.json();
+
+if (!res.ok) {
+  console.error("Login failed:", data);
+  throw new Error("Login failed");
+}
+
+localStorage.setItem("access", data.access);
+localStorage.setItem("refresh", data.refresh);
+
       
-      
-      onAuthSuccess();
+      // onAuthSuccess();
 
       // 🔎 Step 2 — Fetch profile using authFetch
       const meRes = await authFetch(`/api/auth/me/`);
