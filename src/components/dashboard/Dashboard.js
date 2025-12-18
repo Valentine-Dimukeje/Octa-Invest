@@ -40,13 +40,15 @@ const Dashboard = () => {
         const data = await res.json();
 
         // setTransactions(Array.isArray(data.recent) ? data.recent : []);
-        setTransactions(Array.isArray(data.recent) ? data.recent : []);
-        setStats({
-          deposits: parseMoney(data.total_deposits),
-          withdrawals: parseMoney(data.total_withdrawals),
-          investments: parseMoney(data.total_investments),
-          earnings: parseMoney(data.total_earnings),
-        });
+        setTransactions([]); // backend doesn't send recent yet
+
+setStats({
+  deposits: parseMoney(data.balance),
+  withdrawals: 0,
+  investments: parseMoney(data.total_invested),
+  earnings: 0,
+});
+
       } catch (e) {
         console.error("Failed to load dashboard", e);
       }
