@@ -64,7 +64,7 @@ function AppContent() {
     </RequireAuth>
   }
 >
-  <Route path="/transactions" element={<Transactions />} />
+  <Route path="/dashboard/transactions" element={<Transactions />} />
   <Route path="/dashboard" element={<Dashboard />} />
   <Route path="/dashboard/plans" element={<Plans />} />
   <Route path="/dashboard/investments" element={<Investments />} />

@@ -7,7 +7,7 @@ import { WalletContext } from "../dashboard/walletContext";
 import "../styles/layout.css";
 
 const DashboardLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const { walletBalance } = useContext(WalletContext);
 
@@ -15,9 +15,9 @@ const DashboardLayout = () => {
     <div className="dashboard-layout">
       {/* Sidebar - toggle visibility with CSS instead of unmounting */}
       <motion.div
-        animate={{ width: isSidebarOpen ? 250 : 0 }}
-        transition={{ duration: 0.3 }}
-        className={`sidebar-container ${isSidebarOpen ? "open" : "closed"}`}
+       animate={{ width: isSidebarOpen ? 250 : 0 }}
+  transition={{ duration: 0.3 }}
+  className="sidebar-container"
       >
         {/* Wallet Balance Display */}
         {isSidebarOpen && (
@@ -30,7 +30,7 @@ const DashboardLayout = () => {
         {/* Sidebar Navigation */}
         <Sidebar
           isOpen={isSidebarOpen}
-          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          // toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         />
       </motion.div>
 
