@@ -37,12 +37,12 @@ function Referral() {
 
         // 2️⃣ Fetch user info to build referral link
         const meRes = await axios.get(
-          'https://api.heritageinvestmentgrup.com/api/auth/me/', 
+          'https://api.octa-investment.com/api/auth/me/', 
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
         if (meRes.data && meRes.data.username) {
-          setReferralLink(`https://heritageinvestmentgrup.com/ref/${meRes.data.username}`);
+          setReferralLink(`https://octa-investment.com/ref/${meRes.data.username}`);
         }
 
       } catch (err) {
